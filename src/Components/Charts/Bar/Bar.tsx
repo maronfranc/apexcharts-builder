@@ -1,21 +1,22 @@
 import React, { Suspense } from 'react';
+import Chart from 'react-apexcharts';
 
 import Loading from '../../Loading/Loading';
 import { dummyData } from '../../../dummy/data';
 
-const Chart = React.lazy(() => import('react-apexcharts'));
+// const Chart = React.lazy(() => import('react-apexcharts'));
 
 
 export default function Bar() {
   return (
-    <Suspense fallback={<Loading />}>
+    // <Suspense fallback={<Loading />}>
       <Chart
         options={chartData.options}
         series={chartData.series}
         type="bar"
         width="500"
       />
-    </Suspense>
+    // </Suspense> 
   );
 }
 
@@ -53,7 +54,7 @@ const chartData = {
     dataLabels: {
       position: 'top', // top, center, bottom
       enabled: true,
-      // offsetY: -20,
+      offsetY: 0,
       style: {
         fontSize: '12px',
         colors: ["#000"]
