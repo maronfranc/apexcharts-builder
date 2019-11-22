@@ -40,12 +40,12 @@ const state = {
     },
 
     dataLabels: {
-      enabled: true,
-      offsetY: 0,
-      style: {
-        fontSize: '18px',
-        colors: ["#FFF"]
-      },
+      enabled: false,
+      // offsetY: 0,
+      // style: {
+      //   fontSize: '18px',
+      //   colors: ["#FFF"]
+      // },
     },
   },
 };
