@@ -17,6 +17,7 @@ const App: React.FC = () => {
       <Suspense fallback={<Loading />}>
         <Mixed />
       </Suspense>
+      <hr />
       {/* <h1>DinamicallyLoadedBar</h1>
       <Suspense fallback={<Loading />}>
         <DinamicallyLoadedBar />
@@ -31,12 +32,12 @@ const App: React.FC = () => {
       <Suspense fallback={<Loading />}>
         <StackedBar />
       </Suspense>
-      <hr />
+      <hr /> */}
       <h1>Pie</h1>
       <Suspense fallback={<Loading />}>
         <Pie />
       </Suspense>
-      <hr /> */}
+      <hr />
     </div>
   );
 }

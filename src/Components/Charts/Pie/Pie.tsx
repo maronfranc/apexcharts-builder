@@ -25,11 +25,13 @@ const chartData = {
     chart: {
       events: {
         dataPointSelection: (event: Event, chartContext: any, config: any) => {
+          console.log(config.dataPointIndex) // Pega index do trecho
           console.log(config.w.config.labels[config.dataPointIndex])
+          console.log(config.w.config.series[config.dataPointIndex]);
         }
       }
     },
-    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    labels: dummyData.labels,
     legend: {
       position: 'left',
       horizontalAlign: 'right',
