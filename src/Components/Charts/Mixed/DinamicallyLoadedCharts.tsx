@@ -1,10 +1,9 @@
-import React, { Suspense, useState } from 'react';
-import Chart from 'react-apexcharts';
+import React, { Suspense, useState } from "react";
+import Chart from "react-apexcharts";
 
-import Loading from '../../Loading/Loading';
-import { dummyData } from '../../../dummy/data';
+import Loading from "../../Loading/Loading";
+import { dummyData } from "../../../dummy/data";
 
-// const Chart = React.lazy(() => import('react-apexcharts'));
 const Pie = React.lazy(() => import("../Pie/Pie"));
 
 export default function DinamicallyLoadedBar() {
@@ -15,8 +14,12 @@ export default function DinamicallyLoadedBar() {
       chart: {
         id: "basic-bar",
         events: {
-          dataPointSelection: (event: Event, chartContext: any, config: any) => {
-            console.log(config.w.config)
+          dataPointSelection: (
+            event: Event,
+            chartContext: any,
+            config: any
+          ) => {
+            console.log(config.w.config);
           }
         }
       },
@@ -27,33 +30,34 @@ export default function DinamicallyLoadedBar() {
       xaxis: dummyData.xAxis,
       plotOptions: {
         bar: {
-          columnWidth: '50%',
+          columnWidth: "50%",
           distributed: true,
           horizontal: true,
-          barHeight: '70%',
+          barHeight: "70%",
           colors: {
-            ranges: [{
-              from: 0,
-              to: 10,
-              color: undefined
-            }],
+            ranges: [
+              {
+                from: 0,
+                to: 10,
+                color: undefined
+              }
+            ],
             backgroundBarColors: [],
-            backgroundBarOpacity: 1,
-          },
-        },
+            backgroundBarOpacity: 1
+          }
+        }
       },
 
       dataLabels: {
-        position: 'top', // top, center, bottom
+        position: "top", // top, center, bottom
         enabled: true,
         offsetY: 0,
         style: {
-          fontSize: '12px',
+          fontSize: "12px",
           colors: ["#000"]
-        },
-      },
-    },
-
+        }
+      }
+    }
   };
   return (
     <>
@@ -64,13 +68,14 @@ export default function DinamicallyLoadedBar() {
         type="bar"
         width="500"
       />
-      {toggleChart ? <Chart
-        options={chartData.options}
-        series={chartData.series}
-        type="bar"
-        width="500"
-      /> : null}
+      {toggleChart ? (
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="bar"
+          width="500"
+        />
+      ) : null}
     </>
   );
 }
-

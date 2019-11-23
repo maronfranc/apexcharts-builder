@@ -1,5 +1,13 @@
-type EndingShape = "flat" | "rounded";
-type Orientation = "horizontal" | "vertical";
+import { BarChartType } from "./Bar/declarations";
+import { PieChartType } from "./Pie/declarations";
+
+type ChartTypes = BarChartType | PieChartType;
+
+export interface ChartData {
+  options: ApexOptions;
+  series: ChartSerie;
+  type: ChartTypes;
+}
 
 export interface ApexOptions {
   xaxis: any,
@@ -118,3 +126,6 @@ interface Legend {
     top: number;
   }
 };
+
+type EndingShape = "flat" | "rounded";
+type Orientation = "horizontal" | "vertical";

@@ -1,20 +1,10 @@
 import React from "react";
 
-import Loading from "../Loading/Loading";
-import { ApexOptions, ChartSerie } from "./declarations";
-
-interface WithChartsProps {
-  options: ApexOptions;
-  series: ChartSerie[];
-}
+import { ChartData } from "./declarations";
 
 const withCharts = <P extends object>(
   WrappedComponent: React.ComponentType<P>
-): React.FC<P & WithChartsProps> => ({
-  options,
-  series,
-  ...props
-}: WithChartsProps) => {
+): React.FC<P & ChartData> => ({ options, series, ...props }: ChartData) => {
   return (
     <div>
       <h1>HOC</h1>
