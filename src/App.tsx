@@ -1,45 +1,31 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from "react";
 
-import './App.css';
-import Loading from './Components/Loading/Loading';
-import DinamicallyLoadedBar from './Components/Charts/Mixed/DinamicallyLoadedCharts';
-import Mixed from './Components/Charts/Mixed/Mixed';
+import "./App.css";
+import Loading from "./Components/Loading/Loading";
+import DinamicallyLoadedBar from "./Components/Charts/Mixed/DinamicallyLoadedCharts";
+import Mixed from "./Components/Charts/Mixed/Mixed";
+import withChartsFactory from "./Components/Charts/hocChartsFactory";
+import withLoading from "./Components/Charts/hocChartsFactory";
 
-const Bar = lazy(() => import('./Components/Charts/Bar/Bar'));
-const Pie = lazy(() => import('./Components/Charts/Pie/Pie'));
-const StackedBar = lazy(() => import('./Components/Charts/Bar/StackedBar'));
+const Bar = lazy(() => import("./Components/Charts/Bar/Bar"));
+const Pie = lazy(() => import("./Components/Charts/Pie/Pie"));
+const StackedBar = lazy(() => import("./Components/Charts/Bar/StackedBar"));
 
-
+const MixedChartWithHoc = withLoading<any>(Mixed);
+const PieChartWihtHoc = withLoading<any>(Pie);
 
 const App: React.FC = () => {
   return (
     <div className={"App"}>
-      <Suspense fallback={<Loading />}>
-        <Mixed />
-      </Suspense>
+      <MixedChartWithHoc />
       <hr />
-      {/* <h1>DinamicallyLoadedBar</h1>
       <Suspense fallback={<Loading />}>
-        <DinamicallyLoadedBar />
-      </Suspense>
-      <hr />
-      <h1 >Bar</h1>
-      <Suspense fallback={<Loading />}>
-        <Bar />
-      </Suspense>
-      <hr />
-      <h1>StackedBar</h1>
-      <Suspense fallback={<Loading />}>
-        <StackedBar />
-      </Suspense>
-      <hr /> */}
-      <h1>Pie</h1>
-      <Suspense fallback={<Loading />}>
-        <Pie />
+        <h1>Pie</h1>
+        <PieChartWihtHoc />
       </Suspense>
       <hr />
     </div>
   );
-}
+};
 
 export default App;
