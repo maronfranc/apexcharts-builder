@@ -26,7 +26,7 @@ export interface ApexOptions {
   }
   plotOptions?: {
     bar?: {
-      horizontal?: false,
+      horizontal?: boolean,
     }
     radialBar?: {
       offsetY?: number;

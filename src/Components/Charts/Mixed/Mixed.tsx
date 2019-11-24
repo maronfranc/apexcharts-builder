@@ -31,23 +31,6 @@ export default function Mixed() {
       },
     },
   };
-  chartData = {
-    ...chartData,
-    options: {
-      ...chartData.options,
-      chart: {
-        ...chartData.options.chart,
-        events: {
-          dataPointSelection: (event: Event, chartContext: any, config: any) => {
-            console.log(config.dataPointIndex) // Pega index da coluna
-            // console.log(config.w.config);
-            console.log(config.w.globals.series)
-            setToggleChart(toggleChart => !toggleChart);
-          }
-        }
-      }
-    }
-  }
   return (
     <>
       <Chart

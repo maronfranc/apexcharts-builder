@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ChartData } from "./declarations";
+import { ChartData } from "../declarations";
 
 const withCharts = <P extends object>(
   WrappedComponent: React.ComponentType<P>

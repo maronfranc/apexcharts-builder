@@ -1,30 +1,24 @@
-import React, { Suspense, lazy } from "react";
-
+import React, { useState } from "react";
 import "./App.css";
-import Loading from "./Components/Loading/Loading";
-import Mixed from "./Components/Charts/Mixed/Mixed";
-import withCharts from "./Components/Charts/hocChartsFactory";
-import { pieChartData } from "./dummy/pieData";
+import { barData } from "./dummy/barData";
+import StackedBar from "./Components/Charts/Bar/StackedBar";
+import { stackedBarData } from "./dummy/stackedBarData";
+import Bar from "./Components/Charts/Bar/Bar";
+import withChartsFunction from "./Components/Charts/hoc/withChartFunction";
 
-const Bar = lazy(() => import("./Components/Charts/Bar/Bar"));
-const Pie = lazy(() => import("./Components/Charts/Pie/Pie"));
-const StackedBar = lazy(() => import("./Components/Charts/Bar/StackedBar"));
-
-const MixedChartWithHoc = withCharts<any>(Mixed);
-const PieChartWihtHoc = withCharts<any>(Pie);
+const BarChartWithFunction = withChartsFunction(StackedBar);
 
 const App: React.FC = () => {
+  const [toggleChart, setToggleChart] = useState<boolean>(false);
+  const toggle = () => setToggleChart(toggleChart => !toggleChart);
   return (
     <div className={"App"}>
-      <MixedChartWithHoc />
-      <hr />
-      <Suspense fallback={<Loading />}>
-        <h1>Pie</h1>
-        <PieChartWihtHoc
-          options={pieChartData.options}
-          series={pieChartData.series}
-        />
-      </Suspense>
+      <BarChartWithFunction
+        onValueClickedFunction={toggle}
+        options={stackedBarData.options}
+        series={stackedBarData.series}
+      />
+      {toggleChart && <Bar options={barData.options as any} series={barData.series}/>}
       <hr />
     </div>
   );
