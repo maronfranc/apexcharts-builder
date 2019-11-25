@@ -1,12 +1,21 @@
-import { BarChartType } from "./Bar/declarations";
-import { PieChartType } from "./Pie/declarations";
-
-type ChartTypes = BarChartType | PieChartType;
-
 export interface ChartData {
+  key: string;
+  name: string;
   options: ApexOptions;
-  series: ChartSerie;
-  type: ChartTypes;
+  series: ChartSerie[];
+  chartType:
+    | "area"
+    | "line"
+    | "bar"
+    | "histogram"
+    | "pie"
+    | "donut"
+    | "radialBar"
+    | "scatter"
+    | "bubble"
+    | "heatmap"
+    | "candlestick"
+    | "radar";
 }
 
 export interface ApexOptions {
