@@ -5,35 +5,43 @@ interface Map {
   [index: string]: any;
 }
 
-export default class ChartsFactory {
+export default class ChartFactory {
   public static build(
     options: ChartData["options"],
     series: ChartData["series"],
     chartType: ChartData["chartType"]
   ) {
     const chartMap: Map = {
-      bar: this.barChart,
-      pie: this.pieChart,
-      stacked: this.stackedChart
+      bar: ChartFactory.barChart,
+      pie: ChartFactory.pieChart,
+      stacked: ChartFactory.stackedChart
     };
-    return chartMap[chartType]({ options, series, chartType });
+    return chartMap[chartType!]({ options, series });
   }
     
   private static barChart(chartData: ChartData) {
     return {
       options: chartData.options,
       series: chartData.series,
-      chartType: chartData.chartType
     };
   }
 
   private static stackedChart(chartData: ChartData) {
-    let data = this.barChart(chartData);
-    // configuração para stacked aqui vai ser adicionada ao barChart
+    chartData = ChartFactory.barChart(chartData);
+    chartData.options = {
+      ...chartData.options,
+      chart: {
+        stacked: true,
+        foreColor: '#111',
+      },
+      colors: ["#880000", "#008800"],
+      fill: {
+        colors: ["#990000", "#009900",],
+      },
+    }
     return {
-      options: data.options,
-      series: data.series,
-      chartType: data.chartType
+      options: chartData.options,
+      series: chartData.series,
     };
   }
 
@@ -41,7 +49,6 @@ export default class ChartsFactory {
     return {
       options: chartData.options,
       series: chartData.series,
-      chartType: chartData.chartType
     };
   }
 }

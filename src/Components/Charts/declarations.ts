@@ -1,9 +1,9 @@
 export interface ChartData {
-  key: string;
-  name: string;
-  options: ApexOptions;
+  key?: string;
+  name?: string;
+  options: Options;
   series: ChartSerie[];
-  chartType:
+  chartType?:
     | "area"
     | "line"
     | "bar"
@@ -15,10 +15,11 @@ export interface ChartData {
     | "bubble"
     | "heatmap"
     | "candlestick"
-    | "radar";
+    | "radar"
+    | "stacked"
 }
 
-export interface ApexOptions {
+export interface Options {
   xaxis: any,
   chart: {
     width?: string | number;

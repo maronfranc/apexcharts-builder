@@ -1,9 +1,9 @@
-import { ApexOptions, ChartSerie } from "../declarations";
+import { Options, ChartSerie } from "../declarations";
 
 export type PieChartType = "pie" | "donut";
 
 export interface PieChart {
   series: ChartSerie[],
-  options: ApexOptions
+  options: Options
   chartType?: PieChartType,
 }

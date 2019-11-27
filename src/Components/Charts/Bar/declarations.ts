@@ -1,10 +1,10 @@
-import { ApexOptions, ChartSerie } from "../declarations";
+import { Options, ChartSerie } from "../declarations";
 
 export type BarChartType = "bar" | "line";
 
 export interface BarChart {
   series: ChartSerie[],
-  options: ApexOptions
+  options: Options
   chartType?: BarChartType,
 }
 

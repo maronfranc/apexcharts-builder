@@ -1,12 +1,13 @@
 import React from "react";
 
-import { ChartData, ApexOptions } from "../declarations";
+import { ChartData, Options } from "../declarations";
 
+export default withChartsFunction;
 function withChartsFunction<P extends object>(
   MainComponent: React.ComponentType<P>
 ): React.FC<P & ChartData> {
-  return ({ options, series, onValueClickedFunction, ...props }: any) => {
-    let chartOptions: ApexOptions = { ...options };
+  return ({ options, series, onChartClicked = optional, ...props }: any) => {
+    let chartOptions: Options = { ...options };
     chartOptions = {
       ...chartOptions,
       chart: {
@@ -14,9 +15,9 @@ function withChartsFunction<P extends object>(
         events: {
           ...chartOptions.chart.events,
           dataPointSelection: (event: Event, chartContext: any, config: any) =>{
-            console.log(config.seriesIndex)
+            // console.log(config.seriesIndex)
             console.log(config.w)
-            onValueClickedFunction()
+            onChartClicked()
           }
         }
       }
@@ -26,4 +27,7 @@ function withChartsFunction<P extends object>(
     );
   };
 }
-export default withChartsFunction;
+
+function optional() {
+  console.log("Sem função no gŕafico")
+}
