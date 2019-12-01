@@ -1,11 +1,18 @@
+import { ChartSerie } from "./declarations";
+
 export default class ChartBuilder {
   private type: string;
   private isHorizontal: boolean = false;
   private isStacked: boolean = false;
   private showDataLabels: boolean = false;
-
+  private series: ChartSerie[] = [];
   constructor(type: string) {
     this.type = type;
+  }
+
+  public withSeries(s: ChartSerie[]) {
+    this.series = s;
+    return this;
   }
 
   public horizontal() {
@@ -25,15 +32,18 @@ export default class ChartBuilder {
 
   public build() {
     return {
-      plotOptions: {
-        bar: {
-          horizontal: this.isHorizontal
-        }
+      options: {
+        plotOptions: {
+          bar: {
+            horizontal: this.isHorizontal
+          }
+        },
+        chart: {
+          stacked: this.isStacked
+        },
+        dataLabels: { enabled: this.showDataLabels }
       },
-      chart: {
-        stacked: this.isStacked
-      },
-      dataLabels: { enabled: this.showDataLabels }
+      series: this.series
     };
   }
 }
