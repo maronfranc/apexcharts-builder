@@ -20,6 +20,7 @@ export default class ChartFactory {
   }
     
   private static barChart(chartData: ChartData) {
+    // return new BarChart(chartData);
     return {
       options: chartData.options,
       series: chartData.series,
@@ -50,5 +51,14 @@ export default class ChartFactory {
       options: chartData.options,
       series: chartData.series,
     };
+  }
+}
+
+class BarChart {
+  private options: any;
+  private series: any;
+  constructor(chartData: ChartData) {
+    this.options = chartData.options;
+    this.series = chartData.series;
   }
 }
