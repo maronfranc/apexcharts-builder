@@ -1,4 +1,4 @@
-import { dummyData } from "./data";
+import { dummyData } from "./dummyData";
 
 export let barData: any = {
   series: dummyData.singleSerie,
@@ -6,7 +6,7 @@ export let barData: any = {
     chart: {
       id: "basic-bar",
     },
-    xaxis: dummyData.xAxis,
+    xaxis: dummyData.xaxis,
     plotOptions: {
       bar: {
         columnWidth: "50%",

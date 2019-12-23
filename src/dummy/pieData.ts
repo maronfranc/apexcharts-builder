@@ -1,4 +1,4 @@
-import { dummyData } from "./data";
+import { dummyData } from "./dummyData";
 
 export let pieChartData = {
   series: dummyData.singleSerie[0].data,

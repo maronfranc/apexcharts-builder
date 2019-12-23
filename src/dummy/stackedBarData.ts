@@ -1,15 +1,14 @@
-import { dummyData } from "./data";
+import { dummyData } from "./dummyData";
 
 export const stackedBarData = {
   series: dummyData.series,
   options: {
-    xaxis: dummyData.xAxisDatetime,
+    xaxis: dummyData.xaxis,
       chart: {
         stacked: true,
         foreColor: '#111',
         events: {
           dataPointSelection: (event: Event, chartContext: any, config: any) => {
-            console.log("Events: Dummy Data")
             console.log(config.w.config);
           }
         }

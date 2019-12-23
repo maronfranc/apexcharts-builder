@@ -1,43 +1,43 @@
+import ApexCharts from "apexcharts";
+
 export interface ChartData {
   key?: string;
   name?: string;
   options: Options;
-  series: ChartSerie[];
-  chartType?:
-    | "area"
-    | "line"
-    | "bar"
-    | "histogram"
-    | "pie"
-    | "donut"
-    | "radialBar"
-    | "scatter"
-    | "bubble"
-    | "heatmap"
-    | "candlestick"
-    | "radar"
-    | "stacked"
+  series: ApexCharts.ApexOptions["series"];
+  chartType?: ApexChart["type"];
 }
 
 export interface Options {
-  xaxis: any,
-  chart: {
+  xaxis?: {
+    categories: string[] | number[];
+  };
+  chart?: {
+    id?: string;
     width?: string | number;
     height?: string | number;
     type?: string;
     foreColor?: string;
-    stacked?: boolean,
+    stacked?: boolean;
     events?: {
-      dataPointSelection?: (event: Event, chartContext: any, config: any) => void
-    }
-  },
-  fill: {
-    colors: string[],
-  }
+      dataPointSelection?: (
+        event: Event,
+        chartContext: any,
+        config: any
+      ) => void;
+    };
+  };
+  labels?: string[];
+  fill?: {
+    colors: string[];
+  };
   plotOptions?: {
     bar?: {
-      horizontal?: boolean,
-    }
+      horizontal?: boolean;
+      columnWidth: string | number;
+      distributed: boolean;
+      barHeight: string;
+    };
     radialBar?: {
       offsetY?: number;
       startAngle?: number;
@@ -46,72 +46,71 @@ export interface Options {
         margin: number;
         size: string;
         background: string;
-        image: string | undefined,
-      },
+        image: string | undefined;
+      };
       track?: {
-        show: boolean
-      },
-      dataLabels?: DataLabels
+        show: boolean;
+      };
+      dataLabels?: DataLabels;
     };
     circle?: {
       track?: {
-        show: boolean
-      },
+        show: boolean;
+      };
       dataLabels: {
         showOn?: string;
         name?: {
-          show: boolean,
-        },
+          show: boolean;
+        };
         value?: {
-          show: boolean,
-        }
-      }
+          show: boolean;
+        };
+      };
     };
     pie?: {
-      size?: undefined,
+      size?: undefined;
       donut?: {
         size?: string;
         background?: string;
-      },
+      };
       customScale?: number;
       offsetX?: number;
       offsetY?: number;
       dataLabels?: {
         offset?: number;
-      }
-    }
+      };
+    };
   };
-  dataLabels?: DataLabels,
+  dataLabels?: DataLabels;
   colors?: string[];
-  labels?: string[];
   legend?: Legend;
 }
-
 
 export interface ChartSerie {
   name?: string;
   data?: number[];
 }
 
-interface DataLabels {
-  enabled?: boolean,
-  enabledOnSeries?: number[],
-  formatter?: (val: string, opts: any) => {},
-  textAnchor?: string,
-  offsetX?: number | string,
-  offsetY?: number | string,
+export interface DataLabels {
+  position?: "top" | "center" | "bottom";
+  enabled?: boolean;
+  enabledOnSeries?: number[];
+  formatter?: (val: string, opts: any) => {};
+  textAnchor?: string;
+  offsetX?: number | string;
+  offsetY?: number | string;
   style?: {
-    fontSize?: string,
-    fontFamily?: string,
-    colors?: undefined
-  },
+    fontSize?: string;
+    fontFamily?: string;
+    colors?: string[];
+  };
   dropShadow?: {
-    enabled?: boolean,
-    top?: number,
-    left?: number,
-    blur?: number,
-    opacity?: number
-  }
+    enabled?: boolean;
+    top?: number;
+    left?: number;
+    blur?: number;
+    opacity?: number;
+  };
 }
 
 interface Legend {
@@ -122,10 +121,10 @@ interface Legend {
   verticalAlign?: string;
   textAnchor?: string;
   labels?: {
-    useSeriesColors?: boolean
+    useSeriesColors?: boolean;
   };
   markers?: {
-    size: number
+    size: number;
   };
   formatter?: Function;
   itemMargin?: {
@@ -134,8 +133,8 @@ interface Legend {
   containerMargin?: {
     left: number;
     top: number;
-  }
-};
+  };
+}
 
 type EndingShape = "flat" | "rounded";
 type Orientation = "horizontal" | "vertical";

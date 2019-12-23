@@ -13,7 +13,7 @@ function withChartsFunction<P extends object>(
       chart: {
         ...chartOptions.chart,
         events: {
-          ...chartOptions.chart.events,
+          ...chartOptions!.chart!.events,
           dataPointSelection: (event: Event, chartContext: any, config: any) =>{
             // console.log(config.seriesIndex)
             console.log(config.w)

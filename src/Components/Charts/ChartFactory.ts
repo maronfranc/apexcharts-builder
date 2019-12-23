@@ -24,6 +24,7 @@ export default class ChartFactory {
     chartData.options = {
       ...chartData.options,
       chart: {
+        id: 'chart_id',
         stacked: true,
         foreColor: "#111"
       },
@@ -40,6 +41,7 @@ export default class ChartFactory {
   }
 
   private static pieChart(chartData: ChartData, chartType: ChartData['chartType']): ChartData {
+    
     return {
       chartType: chartType,
       options: chartData.options,
