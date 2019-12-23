@@ -1,64 +1,49 @@
-import { PieChart } from "./Pie/declarations";
-import { ChartData } from "./declarations";
-
-interface Map {
-  [index: string]: any;
-}
+import { ChartData } from "../../interfaces/Charts/Charts";
+import { Dictionary } from "../../interfaces/Dictionary";
 
 export default class ChartFactory {
-  public static build(
-    options: ChartData["options"],
-    series: ChartData["series"],
-    chartType: ChartData["chartType"]
-  ) {
-    const chartMap: Map = {
+  public static build(chartData: ChartData, chartType: ChartData["chartType"]) {
+    const chartDictionary: Dictionary = {
       bar: ChartFactory.barChart,
       pie: ChartFactory.pieChart,
       stacked: ChartFactory.stackedChart
     };
-    return chartMap[chartType!]({ options, series });
+    return chartDictionary[chartType!](chartData, chartType);
   }
-    
-  private static barChart(chartData: ChartData) {
-    // return new BarChart(chartData);
+
+  private static barChart(chartData: ChartData, chartType: ChartData['chartType']): ChartData {
     return {
+      chartType: chartType,
       options: chartData.options,
-      series: chartData.series,
+      series: chartData.series
     };
   }
 
-  private static stackedChart(chartData: ChartData) {
-    chartData = ChartFactory.barChart(chartData);
+  private static stackedChart(chartData: ChartData, chartType: ChartData['chartType']): ChartData {
+    chartData = ChartFactory.barChart(chartData, chartType);
     chartData.options = {
       ...chartData.options,
       chart: {
         stacked: true,
-        foreColor: '#111',
+        foreColor: "#111"
       },
       colors: ["#880000", "#008800"],
       fill: {
-        colors: ["#990000", "#009900",],
-      },
-    }
+        colors: ["#990000", "#009900"]
+      }
+    };
     return {
+      chartType: chartType,
       options: chartData.options,
-      series: chartData.series,
+      series: chartData.series
     };
   }
 
-  private static pieChart(chartData: PieChart) {
+  private static pieChart(chartData: ChartData, chartType: ChartData['chartType']): ChartData {
     return {
+      chartType: chartType,
       options: chartData.options,
-      series: chartData.series,
+      series: chartData.series
     };
-  }
-}
-
-class BarChart {
-  private options: any;
-  private series: any;
-  constructor(chartData: ChartData) {
-    this.options = chartData.options;
-    this.series = chartData.series;
   }
 }

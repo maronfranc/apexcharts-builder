@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ChartData, Options } from "../declarations";
+import { ChartData, Options } from "../../../interfaces/Charts/Charts";
 
 export default withChartsFunction;
 function withChartsFunction<P extends object>(

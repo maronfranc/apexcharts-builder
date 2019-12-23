@@ -1,15 +1,10 @@
 import { dummyData } from "./data";
 
-export let barData = {
+export let barData: any = {
   series: dummyData.singleSerie,
   options: {
     chart: {
       id: "basic-bar",
-      // events: {
-      //   dataPointSelection: (event: Event, chartContext: any, config: any) => {
-      //     console.log(config.w.config);
-      //   }
-      // }
     },
     xaxis: dummyData.xAxis,
     plotOptions: {

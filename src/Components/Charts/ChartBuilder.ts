@@ -1,13 +1,13 @@
-import { ChartSerie } from "./declarations";
+import { ChartSerie, ChartData } from "../../interfaces/Charts/Charts";
 
 export default class ChartBuilder {
-  private type: string;
+  private chartType: ChartData['chartType'];
   private isHorizontal: boolean = false;
   private isStacked: boolean = false;
   private showDataLabels: boolean = false;
   private series: ChartSerie[] = [];
-  constructor(type: string) {
-    this.type = type;
+  constructor(chartType: ChartData['chartType']) {
+    this.chartType = chartType;
   }
 
   public withSeries(s: ChartSerie[]) {
@@ -32,6 +32,7 @@ export default class ChartBuilder {
 
   public build() {
     return {
+      chartType: this.chartType as any,
       options: {
         plotOptions: {
           bar: {
